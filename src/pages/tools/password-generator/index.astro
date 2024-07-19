@@ -1,0 +1,226 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+/>
+
+<Layout title="Bienvenido a HexWare">
+    <div class="relative pt-20 ml-auto">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-center dark:text-white">Generador de Contraseñas</h1>
+        <div class="mt-8 flex justify-center items-center">
+          <div class="relative w-full">
+            <button
+              id="copy-password-button"
+              class="absolute left-0 top-0 bottom-0 px-4 text-white rounded-l-lg w-12 sm:w-20 text-lg sm:text-xl bg-slate-800 dark:bg-slate-700"
+              disabled
+            >
+              <i class="bi bi-copy"></i>
+            </button>
+            <input
+              type="text"
+              id="generated-password"
+              class="w-full text-center text-lg sm:text-2xl px-4 py-4 sm:py-6 pl-16 sm:pl-20 pr-16 sm:pr-20 border-2 border-slate-800 rounded-lg dark:border-slate-700"
+              readonly
+            />
+            <button
+              id="regenerate-password-button"
+              class="absolute right-0 top-0 bottom-0 px-4 text-white rounded-r-lg w-12 sm:w-20 text-lg sm:text-2xl bg-slate-800 dark:bg-slate-700"
+            >
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+        <div class="mt-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="flex justify-center items-center">
+              <input
+                type="range"
+                id="password-length"
+                class="w-full cursor-pointer appearance-none bg-slate-200 h-6 rounded-lg border border-slate-300"
+                value="12"
+                min="1"
+                max="50"
+              />
+            </div>
+            <div class="text-lg sm:text-2xl text-center flex justify-center items-center">
+              <span
+                id="password-length-display"
+                class="bg-slate-200 border border-slate-300 px-4 py-2 rounded font-bold"
+                >12</span
+              >
+              <span class="ml-4 dark:text-white">Caracteres</span>
+            </div>
+          </div>
+          <div class="mt-8">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div>
+                <label class="block relative cursor-pointer text-xl select-none">
+                  <div
+                    class="h-20 flex flex-col justify-center items-center rounded-lg border-4 border-gray-500 bg-gray-800 transition-all duration-300 has-[:checked]:border-green-400"
+                  >
+                    <span class="text-white mb-2"> abc </span>
+                    <input
+                      type="checkbox"
+                      id="include-lowercase"
+                      class="peer absolute opacity-0 cursor-pointer h-0 w-0"
+                      checked
+                    />
+                    <div
+                      class="w-12 h-1 bg-gray-400 rounded transition-all duration-300 peer-checked:bg-green-400 peer-checked:shadow peer-checked:shadow-green-500"
+                    >
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label class="block relative cursor-pointer text-xl select-none">
+                  <div
+                    class="h-20 flex flex-col justify-center items-center rounded-lg border-4 border-gray-500 bg-gray-800 transition-all duration-300 has-[:checked]:border-green-400"
+                  >
+                    <span class="text-white mb-2"> ABC </span>
+                    <input
+                      type="checkbox"
+                      id="include-uppercase"
+                      class="peer absolute opacity-0 cursor-pointer h-0 w-0"
+                      checked
+                    />
+                    <div
+                      class="w-12 h-1 bg-gray-400 rounded transition-all duration-300 peer-checked:bg-green-400 peer-checked:shadow peer-checked:shadow-green-500"
+                    >
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label class="block relative cursor-pointer text-xl select-none">
+                  <div
+                    class="h-20 flex flex-col justify-center items-center rounded-lg border-4 border-gray-500 bg-gray-800 transition-all duration-300 has-[:checked]:border-green-400"
+                  >
+                    <span class="text-white mb-2"> 123 </span>
+                    <input
+                      type="checkbox"
+                      id="include-numbers"
+                      class="peer absolute opacity-0 cursor-pointer h-0 w-0"
+                      checked
+                    />
+                    <div
+                      class="w-12 h-1 bg-gray-400 rounded transition-all duration-300 peer-checked:bg-green-400 peer-checked:shadow peer-checked:shadow-green-500"
+                    >
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label class="block relative cursor-pointer text-xl select-none">
+                  <div
+                    class="h-20 flex flex-col justify-center items-center rounded-lg border-4 border-gray-500 bg-gray-800 transition-all duration-300 has-[:checked]:border-green-400"
+                  >
+                    <span class="text-white mb-2"> *!@ </span>
+                    <input
+                      type="checkbox"
+                      id="include-symbols"
+                      class="peer absolute opacity-0 cursor-pointer h-0 w-0"
+                      checked
+                    />
+                    <div
+                      class="w-12 h-1 bg-gray-400 rounded transition-all duration-300 peer-checked:bg-green-400 peer-checked:shadow peer-checked:shadow-green-500"
+                    >
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="copy-notification"
+          class="mt-4 text-center text-green-500"
+          style="display: none;"
+        >
+          Contraseña copiada al portapapeles.
+        </div>
+      </div>
+    </div>  
+</Layout>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    newPassword();
+
+    document.getElementById("password-length").addEventListener("input", () => {
+      document.getElementById("password-length-display").innerText =
+        document.getElementById("password-length").value;
+      newPassword();
+    });
+    document
+      .getElementById("include-lowercase")
+      .addEventListener("change", newPassword);
+    document
+      .getElementById("include-uppercase")
+      .addEventListener("change", newPassword);
+    document
+      .getElementById("include-numbers")
+      .addEventListener("change", newPassword);
+    document
+      .getElementById("include-symbols")
+      .addEventListener("change", newPassword);
+    document
+      .getElementById("regenerate-password-button")
+      .addEventListener("click", newPassword);
+
+    document
+      .getElementById("copy-password-button")
+      .addEventListener("click", copyPassword);
+  });
+
+  function newPassword() {
+    let charset = "";
+    if (document.getElementById("include-lowercase").checked) {
+      charset += "abcdefghijklmnopqrstuvwxyz";
+    }
+    if (document.getElementById("include-uppercase").checked) {
+      charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }
+    if (document.getElementById("include-numbers").checked) {
+      charset += "0123456789";
+    }
+    if (document.getElementById("include-symbols").checked) {
+      charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+    }
+
+    const copyButton = document.getElementById("copy-password-button");
+
+    if (charset === "") {
+      document.getElementById("generated-password").value =
+        "Selecciona al menos un tipo de carácter.";
+      copyButton.disabled = true;
+      return;
+    }
+
+    let password = "";
+    const length =
+      parseInt(document.getElementById("password-length").value) || 12;
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    document.getElementById("generated-password").value = password;
+    copyButton.disabled = false;
+  }
+
+  function copyPassword() {
+    const password = document.getElementById("generated-password").value;
+    navigator.clipboard.writeText(password).then(() => {
+      const notification = document.getElementById("copy-notification");
+      notification.style.display = "block";
+
+      setTimeout(() => {
+        notification.style.display = "none";
+      }, 2000);
+    });
+  }
+</script>
