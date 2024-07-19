@@ -1,0 +1,94 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Interés Compuesto">
+  <div class="relative pt-32 ml-auto">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-center dark:text-white">
+        Calculadora de Interés Compuesto
+      </h1>
+      <div class="mt-10">
+        <label for="initial-amount">
+          <span
+            class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2"
+          >
+            Monto inicial
+          </span>
+          <input
+            type="number"
+            id="initial-amount"
+            name="initial-amount"
+            class="w-full text-center text-2xl px-2 py-2 border-2 border-slate-800 rounded-lg dark:border-slate-700"
+            placeholder="Monto inicial"
+            inputmode="numeric"
+          />
+        </label>
+        <label for="interest-rate">
+          <span
+            class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4"
+          >
+            Tasa de interés anual
+          </span>
+          <input
+            type="number"
+            id="interest-rate"
+            name="interest-rate"
+            class="w-full text-center text-2xl px-2 py-2 border-2 border-slate-800 rounded-lg dark:border-slate-700"
+            placeholder="Tasa de interés anual"
+            inputmode="numeric"
+          />
+        </label>
+        <label for="years">
+          <span
+            class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4"
+          >
+            Años a invertir
+          </span>
+          <input
+            type="number"
+            id="years"
+            name="years"
+            class="w-full text-center text-2xl px-2 py-2 border-2 border-slate-800 rounded-lg dark:border-slate-700"
+            placeholder="Años"
+            inputmode="numeric"
+          />
+        </label>
+        <label for="compound-frequency">
+          <span
+            class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4"
+          >
+            Frecuencia de capitalización
+          </span>
+          <select
+            id="compound-frequency"
+            name="compound-frequency"
+            class="w-full text-center text-2xl px-2 py-2 border-2 border-slate-800 rounded-lg dark:border-slate-700"
+          >
+            <option value="1">Anual</option>
+            <option value="2">Semestral</option>
+            <option value="4">Trimestral</option>
+            <option value="12">Mensual</option>
+            <option value="52">Semanal</option>
+            <option value="365">Diaria</option>
+          </select>
+        </label>
+        <label for="additional-contribution">
+          <span
+            class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4"
+          >
+            Contribución adicional
+          </span>
+          <input
+            type="number"
+            id="additional-contribution"
+            name="additional-contribution"
+            class="w-full text-center text-2xl px-2 py-2 border-2 border-slate-800 rounded-lg dark:border-slate-700"
+            placeholder="Contribución adicional"
+            inputmode="numeric"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+</Layout>
