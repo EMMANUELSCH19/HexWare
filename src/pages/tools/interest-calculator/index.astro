@@ -16,7 +16,7 @@ import Layout from "@/layouts/Layout.astro";
             <span
               class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2"
             >
-              Monto inicial
+              Depósito inicial
             </span>
             <input
               type="number"
@@ -65,7 +65,7 @@ import Layout from "@/layouts/Layout.astro";
             <span
               class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4"
             >
-              Frecuencia de capitalización
+              Frecuencia anual de interés
             </span>
             <select
               id="compound-frequency"
@@ -73,11 +73,10 @@ import Layout from "@/layouts/Layout.astro";
               class="w-full text-center text-2xl px-2 py-2 border-2 border-slate-800 rounded-lg dark:border-slate-700"
             >
               <option value="1">Anual</option>
-              <option value="2">Semestral</option>
-              <option value="4">Trimestral</option>
               <option value="12">Mensual</option>
+              <option value="24">Quincenal</option>
               <option value="52">Semanal</option>
-              <option value="365">Diaria</option>
+              <option value="365">Diario</option>
             </select>
           </label>
           <label
@@ -87,7 +86,7 @@ import Layout from "@/layouts/Layout.astro";
             <span
               class="block text-lg font-medium text-slate-900 dark:text-slate-100 mb-2 mt-4"
             >
-              Contribución adicional
+              Aportaciones adicionales
             </span>
             <input
               type="number"
@@ -104,43 +103,88 @@ import Layout from "@/layouts/Layout.astro";
           <canvas id="myChart"></canvas>
         </div>
       </div>
+
+      <div class="mt-14 flex justify-between items-stretch">
+        <div
+          class="w-full flex flex-col lg:flex-row justify-center items-center lg:justify-between"
+        >
+          <div
+            class="flex bg-slate-800 h-full w-full lg:w-1/5 rounded-xl overflow-hidden"
+          >
+            <div
+              class="bg-[rgba(255,99,132)] w-1/12 shadow-xl shadow-[rgba(255,99,132)]"
+            >
+            </div>
+
+            <div
+              class="w-11/12 flex flex-col justify-center text-white ps-5 py-2 overflow-auto"
+            >
+              <div id="initial-amount-card" class="text-3xl font-bold">
+                $0.00
+              </div>
+              <div class="text-lg">Depósito Inicial</div>
+            </div>
+          </div>
+
+          <div
+            class="flex bg-slate-800 h-full w-full lg:w-1/5 rounded-xl overflow-hidden mt-4 lg:mt-0"
+          >
+            <div
+              class="bg-[rgba(255,205,86)] w-1/12 shadow-xl shadow-[rgba(255,205,86)]"
+            >
+            </div>
+
+            <div
+              class="w-11/12 flex flex-col justify-center text-white ps-5 py-2 overflow-auto"
+            >
+              <div id="additional-contribution-card" class="text-3xl font-bold">
+                $0.00
+              </div>
+              <div class="text-lg">Depósitos Adicionales</div>
+            </div>
+          </div>
+
+          <div
+            class="flex bg-slate-800 h-full w-full lg:w-1/5 rounded-xl overflow-hidden mt-4 lg:mt-0"
+          >
+            <div
+              class="bg-[rgba(75,192,192)] w-1/12 shadow-xl shadow-[rgba(75,192,192)]"
+            >
+            </div>
+
+            <div
+              class="w-11/12 flex flex-col justify-center text-white ps-5 py-2 overflow-auto"
+            >
+              <div id="interest-amount-card" class="text-3xl font-bold">
+                $0.00
+              </div>
+              <div class="text-lg">Interés Acumulado</div>
+            </div>
+          </div>
+
+          <div
+            class="flex bg-slate-800 h-full w-full lg:w-1/5 rounded-xl overflow-hidden mt-4 lg:mt-0"
+          >
+            <div
+              class="bg-[rgba(20,180,80)] w-1/12 shadow-xl shadow-[rgba(20,180,80)]"
+            >
+            </div>
+
+            <div
+              class="w-11/12 flex flex-col justify-center text-white ps-5 py-2 overflow-auto"
+            >
+              <div id="total-amount-card" class="text-3xl font-bold">$0.00</div>
+              <div class="text-lg">Total</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </Layout>
 
 <script>
   import Chart from "chart.js/auto";
-
-  function calculateCompoundInterest(
-    principal,
-    rate,
-    years,
-    frequency,
-    contribution
-  ) {
-    const periods = years * frequency;
-    const ratePerPeriod = rate / (frequency * 100);
-    let total = principal;
-    let contributions = 0;
-    const data = {
-      capital: [],
-      interest: [],
-      contribution: [],
-    };
-
-    for (let i = 0; i <= periods; i++) {
-      if (i % frequency === 0) {
-        data.capital.push(principal); // El capital inicial se mantiene constante
-        const interest = total * ratePerPeriod;
-        total += interest + contribution;
-        contributions += contribution;
-        data.contribution.push(contributions);
-        data.interest.push(total - principal - contributions);
-      }
-    }
-
-    return data;
-  }
 
   document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("myChart");
@@ -153,63 +197,105 @@ import Layout from "@/layouts/Layout.astro";
     );
 
     function updateChart() {
-      const initialAmount = parseFloat(initialAmountInput.value) || 0;
-      const interestRate = parseFloat(interestRateInput.value) || 0;
-      const years = parseInt(yearsInput.value) || 0;
-      const frequency = parseInt(frequencyInput.value) || 1;
-      const contribution = parseFloat(contributionInput.value) || 0;
+      const initialAmount = parseFloat(initialAmountInput.value);
+      const interestRate = parseFloat(interestRateInput.value) / 100;
+      const years = parseFloat(yearsInput.value);
+      const frequency = parseFloat(frequencyInput.value);
+      const contribution = parseFloat(contributionInput.value) * frequency;
 
-      const data = calculateCompoundInterest(
-        initialAmount,
-        interestRate,
-        years,
-        frequency,
-        contribution
-      );
-      const labels = Array.from({ length: years }, (_, i) => `Año ${i + 1}`);
+      const data = {
+        labels: [],
+        datasets: [
+          {
+            label: "Capital Inicial",
+            data: [],
+            backgroundColor: "rgba(255, 99, 132)",
+          },
+          {
+            label: "Contribución Adicional",
+            data: [],
+            backgroundColor: "rgba(75, 192, 192)",
+          },
+          {
+            label: "Interés Acumulado",
+            data: [],
+            backgroundColor: "rgba(255, 205, 86)",
+          },
+        ],
+      };
 
-      myChart.data.labels = labels;
-      myChart.data.datasets[0].data = data.capital;
-      myChart.data.datasets[1].data = data.contribution;
-      myChart.data.datasets[2].data = data.interest;
+      let totalAmount = initialAmount;
+      let totalInterest = 0;
+      let initialContribution = initialAmount;
+      let additionalContribution = 0;
+
+      for (let year = 1; year <= years; year++) {
+        let yearInterest = 0;
+        let yearContribution = 0;
+
+        for (let period = 1; period <= frequency; period++) {
+          const interest = totalAmount * (interestRate / frequency);
+          totalAmount += interest + contribution / frequency;
+          yearInterest += interest;
+          yearContribution += contribution / frequency;
+        }
+
+        totalInterest += yearInterest;
+        additionalContribution += contribution;
+
+        data.labels.push("Año " + year);
+        data.datasets[0].data.push(initialContribution.toFixed(2));
+        data.datasets[1].data.push(additionalContribution.toFixed(2));
+        data.datasets[2].data.push(totalInterest.toFixed(2));
+      }
+
+      // Actualizar los datos en el gráfico
+      myChart.data = data;
       myChart.update();
+
+      // Función para formatear números con comas
+      function formatNumber(number) {
+        return number.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        });
+      }
+
+      // Actualizar los valores en los elementos del DOM con formato de comas
+      document.getElementById("initial-amount-card").innerText =
+        formatNumber(initialContribution);
+      document.getElementById("additional-contribution-card").innerText =
+        formatNumber(contribution * years);
+      document.getElementById("interest-amount-card").innerText =
+        formatNumber(totalInterest);
+      document.getElementById("total-amount-card").innerText =
+        formatNumber(totalAmount);
     }
 
-    initialAmountInput.addEventListener("input", updateChart);
-    interestRateInput.addEventListener("input", updateChart);
-    yearsInput.addEventListener("input", updateChart);
-    frequencyInput.addEventListener("input", updateChart);
-    contributionInput.addEventListener("input", updateChart);
-
+    // Configurar el gráfico
     const myChart = new Chart(ctx, {
       type: "bar",
       data: {
         labels: [],
         datasets: [
           {
-            label: "Capital",
+            label: "Capital Inicial",
             data: [],
             backgroundColor: "rgba(255, 99, 132)",
           },
           {
-            label: "Contribución",
-            data: [],
-            backgroundColor: "rgba(255, 205, 86)",
-          },
-          {
-            label: "Interés",
+            label: "Contribución Adicional",
             data: [],
             backgroundColor: "rgba(75, 192, 192)",
+          },
+          {
+            label: "Interés Acumulado",
+            data: [],
+            backgroundColor: "rgba(255, 205, 86)",
           },
         ],
       },
       options: {
-        plugins: {
-          title: {
-            display: true,
-            text: "Gráfico de Interés Compuesto",
-          },
-        },
         responsive: true,
         scales: {
           x: {
@@ -222,7 +308,14 @@ import Layout from "@/layouts/Layout.astro";
       },
     });
 
-    // Inicializar el gráfico con los valores predeterminados
+    // Llamar a updateChart para inicializar el gráfico
     updateChart();
+
+    // Agregar los eventos para actualizar el gráfico cuando cambien los inputs
+    initialAmountInput.addEventListener("input", updateChart);
+    interestRateInput.addEventListener("input", updateChart);
+    yearsInput.addEventListener("input", updateChart);
+    frequencyInput.addEventListener("change", updateChart);
+    contributionInput.addEventListener("input", updateChart);
   });
 </script>
