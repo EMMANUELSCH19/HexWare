@@ -1,0 +1,105 @@
+---
+import Container from "./Container.astro";
+---
+
+<div class="relative" id="projects">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20"
+  >
+    <div
+      class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"
+    >
+    </div>
+    <div
+      class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"
+    >
+    </div>
+  </div>
+
+  <Container>
+    <div class="relative pt-36 ml-auto">
+      <div class="lg:w-2/3 text-center mx-auto">
+        <h2
+          class="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl"
+        >
+          Proyectos
+        </h2>
+        <p class="mt-8 text-gray-700 dark:text-gray-300">
+          Algunos de los proyectos que hemos realizado.
+        </p>
+      </div>
+      <div class="mt-8">
+        <div class="flex flex-col md:flex-row justify-center gap-10">
+          <!-- First project -->
+          <article
+            class="basis-full md:basis-1/2 lg:basis-1/3 bg-slate-800 rounded flex flex-col text-white"
+            data-aos="zoom-in-up"
+            data-aos-delay="200"
+          >
+            <div class="relative">
+              <video
+                src="/projects/player-quarry/video.mp4"
+                poster="/projects/player-quarry/poster.jpg"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                title="Reproductor de Música"
+                class="rounded object-cover w-full max-h-56"></video>
+            </div>
+            <div class="px-4 py-6 h-full">
+              <a
+                href="#"
+                class="text-2xl font-bold text-green-400 animate-pulse"
+              >
+                Reproductor de Música
+                <i class="fa-solid fa-chevron-right text-xl"></i>
+                <i class="fa-solid fa-chevron-right text-xl -m-2"></i>
+              </a>
+              <p class="mt-2 text-sm leading-5">
+                Aplicación web para escuchar música. Funcionalidades que
+                incluyen la reproducción de música, subir canciones, crear
+                playlist y más.
+              </p>
+            </div>
+          </article>
+          <!-- Second project -->
+          <article
+            class="basis-full md:basis-1/2 lg:basis-1/3 bg-slate-800 rounded flex flex-col text-white"
+            data-aos="zoom-in-up"
+            data-aos-delay="400"
+          >
+            <div class="relative">
+              <video
+                src="/projects/landing-exa/video.mp4"
+                poster="/projects/landing-exa/poster.jpg"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                title="Reproductor de Música"
+                class="rounded object-cover w-full max-h-56"></video>
+            </div>
+            <div class="px-4 py-6 h-full">
+              <a
+                href="#"
+                class="text-2xl font-bold text-green-400 animate-pulse"
+              >
+                Landing Page
+                <i class="fa-solid fa-chevron-right text-xl"></i>
+                <i class="fa-solid fa-chevron-right text-xl -m-2"></i>
+              </a>
+              <p class="mt-2 text-sm leading-5">
+                Página web de promocion de eventos. Incluye formulario,
+                animaciones, y más.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </Container>
+</div>
