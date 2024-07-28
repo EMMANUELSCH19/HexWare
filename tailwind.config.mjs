@@ -8,7 +8,7 @@ export default {
 				primary: "#F21246",
       	secondary: "#9333EA",
       	darkBlue: "#1D3557",
-      	darkRed: "#F21246",
+      	darkRed: "#551A1A",
       	nearWhite: "#FCFCFC",
 			},
 		},

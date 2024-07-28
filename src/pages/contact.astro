@@ -1,0 +1,116 @@
+---
+import Container from "@/components/Container.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Bienvenido a HexWare">
+  <main class="pt-16 ml-auto text-white">
+    <Container>
+      <div class="mt-10">
+        <div class="flex flex-col lg:flex-row">
+          <div class="lg:w-1/2 p-4">
+            <h1
+              class="text-gray-900 dark:text-white font-bold text-4xl md:text-5xl xl:text-6xl text-center"
+            >
+              ¿Tiene algún proyecto en mente?
+            </h1>
+
+            <p
+              class="mt-8 text-gray-700 dark:text-gray-300 text-center text-xl"
+            >
+              ¡Hablemos! Estamos aquí para ayudarlo a hacerlo realidad.
+            </p>
+
+            <div class="hidden lg:flex justify-center items-center mt-16">
+              <img
+                src="/images/illustrations/business-deal.svg"
+                alt=""
+                class="w-4/5"
+              />
+            </div>
+          </div>
+          <div class="lg:w-1/2 p-4">
+            <form
+              action=""
+              method="POST"
+              class="grid grid-cols-3 gap-6 border-2 rounded-lg border-slate-300 dark:border-slate-700 p-6"
+            >
+
+              <div class="col-span-3">
+                <label for="name" class="text-gray-900 dark:text-white">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="w-full h-11 px-4 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                />
+              </div>
+
+              <div class="col-span-3 xl:col-span-2">
+                <label for="email" class="text-gray-900 dark:text-white">
+                  Correo
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="w-full h-11 px-4 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                />
+              </div>
+
+              <div class="col-span-3 xl:col-span-1">
+                <label for="phone" class="text-gray-900 dark:text-white">
+                  Teléfono
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  class="w-full h-11 px-4 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                />
+              </div>
+
+              <div class="col-span-3">
+                <label for="project_type" class="text-gray-900 dark:text-white">
+                  Tipo de proyecto
+                </label>
+                <select
+                  name="project_type"
+                  id="project_type"
+                  class="w-full h-11 px-4 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                >
+                  <option value="" selected disabled
+                    >Seleccione una opción</option
+                  >
+                  <option value="web_development">Desarrollo web</option>
+                  <option value="mobile_development">Desarrollo móvil</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="col-span-3">
+                <label for="message" class="text-gray-900 dark:text-white">
+                  Mensaje
+                </label>
+                <textarea
+                  name="message"
+                  id="message"
+                  class="w-full h-32 px-4 py-2 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="col-span-3 h-11 bg-primary text-white font-semibold rounded"
+              >
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
