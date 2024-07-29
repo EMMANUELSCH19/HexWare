@@ -1,0 +1,186 @@
+---
+import Container from "@/components/Container.astro";
+import Layout from "../layouts/Layout.astro";
+import "bootstrap-icons/font/bootstrap-icons.css";
+---
+
+<Layout title="Precios">
+  <main class="pt-16 ml-auto text-white">
+    <Container>
+      <div class="mt-10">
+        <h1
+          class="text-gray-900 dark:text-white font-bold text-4xl md:text-5xl xl:text-6xl text-center"
+        >
+          Conoce nuestros paquetes web
+        </h1>
+
+        <div
+          class="body h-full mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 p-0 md:p-4 lg:p-8"
+        >
+          <div
+            class="flex flex-col h-full bg-gradient-to-r from-slate-300/60 to-gray-300/50 dark:from-black/40 dark:to-black/20 p-8 rounded-2xl shadow-lg backdrop-blur-sm border border-white/30 text-black dark:text-white"
+          >
+            <h2 class="text-2xl font-bold text-purple-600 dark:text-purple-400">Básico</h2>
+            <p class="text-sm mt-4">
+              Ideal para proyectos pequeños que inicien en el mundo digital
+            </p>
+            <div class="mt-6">
+              <span class="text-xl font-bold text-purple-600 dark:text-purple-400"> $ </span>
+              <span class="text-4xl font-bold mt-4"> 5,000 </span>
+            </div>
+            <div class="mt-6">
+              <button
+                class="w-full bg-purple-600 dark:bg-white/10 text-white font-semibold p-2 rounded-full border border-purple-700 dark:border-purple-400/50 dark:text-purple-400 animate-pulse"
+              >
+                Lo quiero
+              </button>
+            </div>
+            <div class="mt-6 flex-grow">
+              <ul class="text-sm">
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Hasta 5 secciones</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Diseño personalizado</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">SEO Básico</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">5 emails gratis</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">1 año de Hosting</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Certificado de seguridad SSL</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Mantenimiento por 2 meses</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col h-full bg-gradient-to-r from-slate-300/60 to-gray-300/50 dark:from-black/40 dark:to-black/20 p-8 rounded-2xl shadow-lg backdrop-blur-sm border border-white/30 text-black dark:text-white"
+          >
+            <h2 class="text-2xl font-bold text-yellow-600 dark:text-yellow-400">Empresarial</h2>
+            <p class="text-sm mt-4">
+              Excelente para empresas en crecimiento que buscan expandirse
+            </p>
+            <div class="mt-6">
+              <span class="text-xl font-bold text-yellow-600 dark:text-yellow-400"> $ </span>
+              <span class="text-4xl font-bold mt-4"> 10,000 </span>
+            </div>
+            <div class="mt-6">
+              <button
+                class="w-full bg-yellow-600 dark:bg-white/10 text-white font-semibold p-2 rounded-full border border-yellow-700 dark:border-yellow-400/50 dark:text-yellow-400 animate-pulse"
+              >
+                Lo quiero
+              </button>
+            </div>
+            <div class="mt-6 flex-grow">
+              <ul class="text-sm">
+                <li class="py-4 border-b border-gray-500/40">
+                  <span class="ms-1"
+                    >Lo que incluye el paquete <span
+                      class="text-purple-600 dark:text-purple-400 font-bold">Básico</span
+                    > más:</span
+                  >
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">5 páginas adicionales</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">SEO Avanzado</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">10 emails gratis</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Formularios de contacto avanzados</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Mantenimiento por 6 meses</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 lg:col-span-1 flex flex-col h-full bg-gradient-to-r from-slate-300/60 to-gray-300/50 dark:from-black/40 dark:to-black/20 p-8 rounded-2xl shadow-lg backdrop-blur-sm border border-white/30 text-black dark:text-white"
+          >
+            <h2 class="text-2xl font-bold text-blue-600 dark:text-blue-400">Personalizado</h2>
+            <p class="text-sm mt-4">
+              Necesitas algo más específico, habla con nosotros y te ayudamos
+            </p>
+            <div class="mt-6">
+              <span class="text-4xl font-bold mt-4"> Contactanos </span>
+            </div>
+            <div class="mt-6">
+              <button
+                class="w-full bg-blue-600 dark:bg-white/10 text-white font-semibold p-2 rounded-full border border-blue-700 dark:border-blue-400/50 dark:text-blue-400 animate-pulse"
+              >
+                Lo quiero
+              </button>
+            </div>
+            <div class="mt-6 flex-grow">
+              <ul class="text-sm">
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Solución según tus necesidades</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Funcionalidades específicas</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">SEO avanzado</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Emails personalizados</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Hosting personalizado</span>
+                </li>
+                <li class="py-4 border-b border-gray-500/40">
+                  <i class="bi bi-check-circle text-green-600 dark:text-green-400"></i>
+                  <span class="ms-1">Mantenimiento a largo plazo</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+
+    <style>
+      .body {
+        background-color: transparent;
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 80px 80px; /* Tamaño de cada celda de la cuadrícula */
+      }
+    </style>
+  </main>
+</Layout>
