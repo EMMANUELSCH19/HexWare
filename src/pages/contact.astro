@@ -31,31 +31,35 @@ import Layout from "../layouts/Layout.astro";
           </div>
           <div class="lg:w-1/2 p-4">
             <form
-              action=""
+              action="https://formsubmit.co/878e6c4b7fc417877963c99447989037"
               method="POST"
               class="grid grid-cols-3 gap-6 border-2 rounded-lg border-slate-300 dark:border-slate-700 p-6"
             >
               <div class="col-span-3">
                 <label for="name" class="text-gray-900 dark:text-white">
                   Nombre
+                  <span class="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="name"
                   id="name"
                   class="w-full h-11 px-4 mt-2 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                  required
                 />
               </div>
 
               <div class="col-span-3 xl:col-span-2">
                 <label for="email" class="text-gray-900 dark:text-white">
                   Correo
+                  <span class="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   name="email"
                   id="email"
                   class="w-full h-11 px-4 mt-2 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                  required
                 />
               </div>
 
@@ -74,17 +78,19 @@ import Layout from "../layouts/Layout.astro";
               <div class="col-span-3">
                 <label for="project_type" class="text-gray-900 dark:text-white">
                   Tipo de proyecto
+                  <span class="text-red-500">*</span>
                 </label>
                 <select
                   name="project_type"
                   id="project_type"
                   class="w-full h-11 px-4 mt-2 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
+                  required
                 >
                   <option value="" selected disabled
                     >Seleccione una opción</option
                   >
-                  <option value="web_development">Desarrollo web</option>
-                  <option value="mobile_development">Desarrollo móvil</option>
+                  <option value="web_development">Servicio Web</option>
+                  <option value="mobile_development">Mantenimiento Web</option>
                   <option value="otro">Otro</option>
                 </select>
               </div>
@@ -92,12 +98,13 @@ import Layout from "../layouts/Layout.astro";
               <div class="col-span-3">
                 <label for="message" class="text-gray-900 dark:text-white">
                   Mensaje
+                  <span class="text-red-500">*</span>
                 </label>
                 <textarea
                   name="message"
                   id="message"
                   class="w-full h-32 px-4 py-2 mt-2 text-gray-900 bg-gray-200 focus:ring-2 focus:ring-primary focus:outline-none dark:text-white dark:bg-gray-700 rounded"
-                ></textarea>
+                  required></textarea>
               </div>
 
               <button
@@ -106,6 +113,9 @@ import Layout from "../layouts/Layout.astro";
               >
                 Enviar
               </button>
+
+              <input type="hidden" name="_next" value="http://localhost:4321" />
+              <input type="hidden" name="_captcha" value="false" />
             </form>
           </div>
         </div>
